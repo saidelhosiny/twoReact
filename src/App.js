@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { Component } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./components/Home/Home";
+import MasterLayout from "./components/Layout/MasterLayout";
+import PORTFOLIO from "./components/PORTFOLIO/PORTFOLIO";
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
+import Movies from "./components/Movies/Movies";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+let rooter = createBrowserRouter([
+  {
+    path: "/",
+    element: <MasterLayout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "portifolo", element: <PORTFOLIO /> },
+      { path: "about", element: <About /> },
+      { path: "movies", element: <Movies /> },
+      { path: "contact", element: <Contact /> },
+    ],
+  },
+]);
+
+export class App extends Component {
+  state = {};
+
+  render() {
+    return <RouterProvider router={rooter} />;
+  }
 }
 
 export default App;
